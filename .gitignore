@@ -1,5 +1,1 @@
-/node_modules/
-tmp
-test/index.html
-test/.generated
-bin
+node_modules/

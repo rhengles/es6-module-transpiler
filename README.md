@@ -1,19 +1,19 @@
 # ES6 Module Transpiler
 
-ES6 Module Transpiler is an experimental compiler that allows you to write your
-JavaScript using a subset of the current ES6 module syntax, and compile it into
-AMD or CommonJS modules.
+ES6 Module Transpiler is an experimental compiler that allows you to write
+your JavaScript/CoffeeScript using a subset of the current ES6 module syntax,
+and compile it into AMD or CommonJS modules.
 
-**WARNING: The ES6 module syntax is still undergoing a lot of churn, and will
-definitely still change before final approval.**
+**WARNING: The ES6 module syntax is still undergoing a lot of churn,
+and will definitely still change before final approval.**
 
-**ES6 Module Transpiler will track ES6 syntax, and not attempt to maintain
-backwards compatibility with syntax that ultimately did not succeed as part of
-ES6.**
+**ES6 Module Transpiler will track ES6 syntax, and not attempt to
+maintain backwards compatibility with syntax that ultimately did
+not succeed as part of ES6.**
 
-This compiler provides a way to experiment with ES6 syntax in real world
-scenarios to see how the syntax holds up. It also provides a nicer, more
-declarative way to write AMD (or CommonJS) modules.
+This compiler provides a way to experiment with ES6 syntax in real
+world scenarios to see how the syntax holds up. It also provides a
+nicer, more declarative way to write AMD (or CommonJS) modules.
 
 See the [CHANGELOG](./CHANGELOG.md) for the latest updates.
 
@@ -51,8 +51,8 @@ ANONYMOUS
 
 NAME
   You can supply a name to use as the module name.  By default, the transpiler
-  will use the name of the file (without the ending `.js`) as the module name.
-  You may not use this option if you provided multiple FILEs.
+  will use the name of the file (without the ending `.js`/`.coffee`) as the
+  module name.  You may not use this option if you provided multiple FILEs.
 
 GLOBAL
   This option is only supported when the type is `globals`. By default, the
@@ -192,7 +192,7 @@ export { get, set };
 will compile into this AMD output:
 
 ```javascript
-define(
+define("ember",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -230,7 +230,7 @@ export default jQuery;
 will compile into this AMD output:
 
 ```javascript
-define(
+define("ember",
   [],
   function() {
     "use strict";
@@ -255,7 +255,7 @@ import { get, set } from "ember";
 will compile into this AMD output:
 
 ```javascript
-define(
+define("app",
   ["ember"],
   function(__dependency1__) {
     "use strict";
@@ -275,17 +275,35 @@ import jQuery from "jquery";
 will compile into this AMD output:
 
 ```javascript
-define(
+define("app",
   ["jquery"],
   function(jQuery) {
     "use strict";
   });
 ```
 
-## Using with Node.js/Grunt
+## Using with Node.js
 
-You can use this library to pre-transpile your browser code or your node
-packages however you wish, but the easiest way to do it is probably to use the
+You can use this library to pre-transpile your browser code or your node packages,
+but when developing a node package this can be painful. To make testing your
+packages easier you can configure es6-module-transpiler to auto-transpile your
+JavaScript or CoffeeScript modules on the fly:
+
+```javascript
+// mymodule.js
+import jQuery from "jquery";
+export jQuery;
+
+// bootstrap.js
+require("es6-module-transpiler/require_support").enable();
+var jQuery = require("./mymodule").jQuery;
+
+// …
+```
+
+## Using with Grunt
+
+You can install the
 [grunt-es6-module-transpiler](http://github.com/joefiorini/grunt-es6-module-transpiler)
 plugin to run the transpiler as part of your [Grunt.js](http://gruntjs.com)
 build task. See the README on the plugin's Github page for more information.
@@ -302,16 +320,12 @@ Or install it globally:
 
 ## Acknowledgements
 
-Thanks to [Yehuda Katz](https://twitter.com/wycats) for
+Thanks to Yehuda Katz for
 [js_module_transpiler](https://github.com/wycats/js_module_transpiler), the
-library on which this one is based. Thanks to [Dave
-Herman](https://twitter.com/littlecalculist) for his work on ES6 modules.
-Thanks to [Erik Bryn](https://twitter.com/ebryn) for providing the initial push
-to write this library. Thanks to [Domenic
-Denicola](https://twitter.com/domenic) & [Thomas
-Boyt](https://twitter.com/thomasaboyt) for their efforts to make this project
-even better. And finally thanks to the JavaScript community at Square for
-helping to write and release this library.
+library on which this one is based. Thanks to Dave Herman for his work on ES6
+modules. Thanks to Erik Bryn for providing the initial push to write this
+library. And finally thanks to the JavaScript community at Square for helping
+to write and release this library.
 
 ## Contributing
 
