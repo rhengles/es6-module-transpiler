@@ -1,8 +1,8 @@
 {
-  "name": "es6-module-transpiler",
+  "name": "es6-module-transpiler-rhengles",
   "version": "0.3.0",
   "description": "es6-module-transpiler is an experimental compiler that allows you to write your JavaScript or CoffeeScript using a subset of the current ES6 module syntax, and compile it into AMD, CommonJS, and globals styles.",
-  "homepage": "http://square.github.com/es6-module-transpiler",
+  "homepage_COMMENT": "http://square.github.com/es6-module-transpiler",
   "keywords": [
     "es6",
     "module",
@@ -11,7 +11,7 @@
     "commonjs"
   ],
   "bugs": {
-    "url": "https://github.com/square/es6-module-transpiler/issues"
+    "url": "https://github.com/rhengles/es6-module-transpiler/issues"
   },
   "preferGlobal": true,
   "bin": {
@@ -33,7 +33,7 @@
     "test": "grunt"
   },
   "devDependencies_COMMENT": {
-		"comment": "These modules should be installed globally, we don't want to repeat them inside this package if you run 'npm install'.",
+    "comment": "These modules should be installed globally, we don't want to repeat them inside this package if you run 'npm install'.",
     "grunt-cli": "~0.1.6"
   },
   "devDependencies": {
@@ -49,7 +49,7 @@
     {
       "name": "Brian Donovan",
       "email": "donovan@squareup.com"
-    }
+    },
     {
       "name": "Rafael Hengles",
       "email": "rhengles@gmail.com"
@@ -59,7 +59,6 @@
   "readmeFilename": "README.md",
   "_id": "es6-module-transpiler@0.2.0",
   "dist": {
-    "shasum": "6bb4dd36df12fab5f9cd2e166c2e2b4ed6a55c4d"
   },
   "_from": "es6-module-transpiler@~0.2.0",
   "_resolved": "https://registry.npmjs.org/es6-module-transpiler/-/es6-module-transpiler-0.2.0.tgz"
