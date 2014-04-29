@@ -18,6 +18,8 @@ module.exports = function(grunt) {
       return true;
     }).join('\n'));
 
+    options.eol = grunt.util.linefeed;
+
     return { source: source, options: options };
   }
 
