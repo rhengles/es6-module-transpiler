@@ -53,32 +53,48 @@ class Compiler
     @parse()
 
   parse: ->
-    @parseLine line for line in @string.split(@options.eol or '\n')
+    eol = @options.eol or '\n'
+    @log eol, 'SPLITTING BY', encodeURIComponent(eol)
+    @parseLine line for line in @string.split(eol)
     return null
 
   parseLine: (line) ->
     if not @inBlockComment
       if match = @matchLine line, EXPORT_DEFAULT
+        @log 1, line, match
         @processExportDefault match
       else if match = @matchLine line, EXPORT_FUNCTION
+        @log 2, line, match
         @processExportFunction match
       else if match = @matchLine line, EXPORT_VAR
+        @log 3, line, match
         @processExportVar match
       else if match = @matchLine line, RE_EXPORT
+        @log 4, line, match
         @processReexport match
       else if match = @matchLine line, EXPORT
+        @log 5, line, match
         @processExport match
       else if match = @matchLine line, IMPORT
+        @log 6, line, match
         @processImport match
       else if match = @matchLine line, @commentStart
+        # @log 7, line, match
         @processEnterComment line
       else
+        # @log 8, line, ''
         @processLine line
     else
       if match = @matchLine line, @commentEnd
+        @log 9, line, match
         @processExitComment line
       else
+        @log 0, line, ''
         @processLine line
+
+  log: (a, b, c) ->
+    # console.log a, b, c
+    null
 
   matchLine: (line, pattern) ->
     match = line.match pattern
